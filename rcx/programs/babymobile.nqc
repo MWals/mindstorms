@@ -1,0 +1,64 @@
+int direction = 0;
+int running = 0;
+
+task TaskMotor()
+{
+     while (1)
+     {
+           if(running == 1) {
+                if (direction == 0) {
+                     OnFwd(OUT_A);
+                } else {
+                     OnRev(OUT_A);
+                }
+                Wait(100);
+                Off(OUT_A);
+                Wait(300);
+           } else {
+                Off(OUT_A);
+           }
+           Wait(10);
+     }
+}
+
+task TaskStartStop()
+{
+     while(1) {
+              until(SENSOR_1 == 1);
+              PlayTone(440, 1);
+              if(running == 0) {
+                     running = 1;
+              } else {
+                     running = 0;
+              }
+              Wait(100);
+     }
+}
+
+task TaskDirection() {
+     while(1) {
+              until(SENSOR_2 == 1);
+              PlayTone(880, 1);
+              if(direction == 0) {
+                     direction = 1;
+              } else {
+                     direction = 0;
+              }
+              Wait(100);
+     }
+}
+
+sub initialize()
+{
+     SetSensor(SENSOR_1, SENSOR_TOUCH);
+     SetSensor(SENSOR_2, SENSOR_TOUCH);
+     SetPower(OUT_A, 1);
+}
+
+task main()
+{
+     initialize();
+     start TaskMotor;
+     start TaskStartStop;
+     start TaskDirection;
+}

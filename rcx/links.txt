@@ -1,0 +1,4 @@
+https://neuron.eng.wayne.edu/LEGO_ROBOTICS/software_setup_tutorial.html
+https://neuron.eng.wayne.edu/LEGO_ROBOTICS/NQC_examples/
+http://bricxcc.sourceforge.net/nqc/doc/NQC_Guide.pdf
+https://www.instructables.com/Making-Mindstorms-RCX-Work-Again/
